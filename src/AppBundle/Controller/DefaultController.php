@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Coach;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,20 @@ class DefaultController extends Controller
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
+    }
+
+    /**
+     * @Route("/admin/auteur_bdd", name="admin_auteur_bdd")
+     * */
+    public function auteurBddAction()
+    {
+        $coach = $this->getDoctrine()
+            ->getRepository(Coach::class)
+            ->findAll();
+        return $this->render('Admin/coach/coachAll.html.twig',
+            [
+                'coach' => $coach
+            ]);
     }
 
 }

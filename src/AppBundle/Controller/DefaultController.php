@@ -21,18 +21,6 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/admin/auteur_bdd", name="admin_auteur_bdd")
-     * */
-    public function auteurBddAction()
-    {
-        $coach = $this->getDoctrine()
-            ->getRepository(Coach::class)
-            ->findAll();
-        return $this->render('Admin/coach/coachAll.html.twig',
-            [
-                'coach' => $coach
-            ]);
-    }
+
 
 }

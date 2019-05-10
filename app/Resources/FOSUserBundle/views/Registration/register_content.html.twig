@@ -1,63 +1,91 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 
-
-
-
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 <div class="container">
     <div class="d-flex justify-content-center h-100">
         <div class="card">
             <div class="card-header">
-                <h3>Enregistrez-vous</h3>
+                <h3>Inscrivez-vous</h3>
             </div>
             <div class="card-body">
-                <form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                        {{ form_widget(form.username, { 'attr': {'class': 'form-control placeholder-no-fix', 'placeholder':'Pseudo'} }) }}
+                        {% for errorItem in form.username.vars.errors %}
+                            <span class="help-inline">{{ errorItem.message }}</span>
+                        {% endfor %}
+                </div>
 
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input placeholder="Nom" {{ form_widget(form.nom) }}
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder':'E-mail'} }) }}
+                        {% for errorItem in form.email.vars.errors %}
+                            <span class="help-inline">{{ errorItem.message }}</span>
+                        {% endfor %}
+                </div>
 
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            </div>
-                            <input placeholder="Prenom" {{ form_widget(form.prenom) }}
-                        </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                        {{ form_widget(form.nom, { 'attr': {'class': 'form-control', 'placeholder':'nom'} }) }}
+                        {% for errorItem in form.nom.vars.errors %}
+                            <span class="help-inline">{{ errorItem.message }}</span>
+                        {% endfor %}
+                </div>
 
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input placeholder="Mot de passe" {{ form_widget(form.avatar) }}
+                            {{ form_widget(form.prenom, { 'attr': {'class': 'form-control', 'placeholder':'prenom'} }) }}
+                            {% for errorItem in form.prenom.vars.errors %}
+                                <span class="help-inline">{{ errorItem.message }}</span>
+                            {% endfor %}
+                    </div>
 
-                        <div class="input-group form-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-key"></i></span>
-                            </div>
-
-                        <div>
-                            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-
+                        {{ form_widget(form.avatar, { 'attr': {'class': 'form-control', 'placeholder':'avatar'} }) }}
+                        {% for errorItem in form.avatar.vars.errors %}
+                            <span class="help-inline">{{ errorItem.message }}</span>
+                        {% endfor %}
                     </div>
-                    <div class="row align-items-center remember">
 
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder':'Mot de passe'} }) }}
+                        {% for errorItem in form.plainPassword.first.vars.errors %}
+                            <span class="help-inline">{{ errorItem.message }}</span>
+                        {% endfor %}
                     </div>
-                    <div class="form-group">
 
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder':'Confirmé mot de passe'} }) }}
+                        {% for errorItem in form.plainPassword.second.vars.errors %}
+                            <span class="help-inline">{{ errorItem.message }}</span>
+                        {% endfor %}
                     </div>
-                </form>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-center links">
 
-                </div>
-                <div class="d-flex justify-content-center">
-
+                <a class="btn btn-link" href="{{ path('fos_user_security_login') }}">Back to login</a>
+                <div>
+                    <input type="submit" id="register-submit-btn" class="btn float-right login_btn" value="{{ 'registration.submit'|trans }}" />
                 </div>
             </div>
         </div>
     </div>
 </div>
+{{ form_rest(form) }}
+{{ form_end(form) }}

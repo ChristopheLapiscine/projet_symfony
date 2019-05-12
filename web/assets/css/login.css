@@ -15,7 +15,7 @@ html,body{
 }
 
 .card{
-    height: 370px;
+    height: 550px;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
@@ -70,7 +70,7 @@ input:focus{
 .login_btn{
     color: white;
     background-color: #0866EB;
-    width: 100px;
+    width: 150px;
     padding: 0px;
 }
 
@@ -98,5 +98,9 @@ a{
 }
 
 .fas{
+    color: white;
+}
+
+p{
     color: white;
 }

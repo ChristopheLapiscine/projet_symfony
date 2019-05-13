@@ -80,6 +80,8 @@ class Messages
     public function __construct()
     {
         $this->isRead=false;
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     /**

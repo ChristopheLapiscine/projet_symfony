@@ -4,7 +4,7 @@
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 <div class="container">
     <div class="d-flex justify-content-center h-100">
-        <div class="card">
+        <div class="card transparence2">
             <div class="card-header">
                 <h3>Inscrivez-vous</h3>
             </div>
@@ -47,16 +47,6 @@
                             {% for errorItem in form.prenom.vars.errors %}
                                 <span class="help-inline">{{ errorItem.message }}</span>
                             {% endfor %}
-                    </div>
-
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-camera"></i></span>
-                        </div>
-                        {{ form_widget(form.avatar, { 'attr': {'class': 'form-control', 'placeholder':'avatar'} }) }}
-                        {% for errorItem in form.avatar.vars.errors %}
-                            <span class="help-inline">{{ errorItem.message }}</span>
-                        {% endfor %}
                     </div>
 
                     <div class="input-group form-group">

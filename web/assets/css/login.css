@@ -15,11 +15,18 @@ html,body{
 }
 
 .card{
-    height: 550px;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
     background-color: rgba(0,0,0,0.5) !important;
+}
+
+.transparence{
+    height: 350px;
+}
+
+.transparence2{
+    height: 550px;
 }
 
 .social_icon span{
@@ -70,8 +77,8 @@ input:focus{
 .login_btn{
     color: white;
     background-color: #0866EB;
-    width: 150px;
-    padding: 0px;
+    width: 170px;
+    padding: 4px;
 }
 
 .login_btn:hover{

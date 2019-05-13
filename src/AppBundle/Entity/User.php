@@ -102,13 +102,6 @@ class User extends BaseUser
     public $prenom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
-     */
-    public $avatar;
-
-    /**
      * @return mixed
      */
     public function getId()
@@ -173,28 +166,5 @@ class User extends BaseUser
         return $this->prenom;
     }
 
-    /**
-     * Set avatar
-     *
-     * @param string $avatar
-     *
-     * @return User
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    /**
-     * Get avatar
-     *
-     * @return string
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
 }
 

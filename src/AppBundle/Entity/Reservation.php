@@ -98,6 +98,12 @@ class Reservation
      */
     private $createdAt;
 
+    Public function __construct(){
+
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
     /**
      * @var \DateTime
      *

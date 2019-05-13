@@ -133,12 +133,26 @@ class Coach
      */
     private $price;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
+     */
+    public $avatar;
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
      */
     private $createdAt;
+
+    Public function __construct(){
+
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
 
     /**
      * @var \DateTime
@@ -222,5 +236,22 @@ class Coach
     {
         $this->price = $price;
     }
+
+    /**
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
 }
 

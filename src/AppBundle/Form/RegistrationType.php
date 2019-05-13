@@ -12,7 +12,6 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nom');
         $builder->add('prenom');
-        $builder->add('avatar',FileType::class, array('data_class' => null));
     }
 
     public function getParent()

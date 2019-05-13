@@ -2,7 +2,17 @@
 
 {% block content %}
 
-   {# {% for coach in coach %}
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center">
+
+                    <h1>Liste Coach</h1>
+
+                </div>
+            </div>
+   {#
+   {% for coach in coach %}
 
             <a href="{{ path("detailCoach_bdd", {'id': coach.id}) }}">
                 <img src="{{ asset('assets/img/'~coach.avatar) }}" alt="">
@@ -11,15 +21,7 @@
             </a>
     {% endfor %}
     #}
-<div class="content">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center">
 
-                <h1>Liste Coach</h1>
-
-            </div>
-        </div>
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                 <!-- team-img -->
@@ -28,12 +30,12 @@
                         <img src="https://easetemplate.com/free-website-templates/motion/images/team_member_1.jpg" alt="">
                         <div class="team-content">
                             <h4 class="text-white mb0">Eliza Simon</h4>
-                            <p class="team-meta">- Producer</p>
+                            <p class="team-meta">- Badminton</p>
                         </div>
                         <div class="overlay">
                             <div class="text">
                                 <h4 class="mb0 text-white">Eliza Simon</h4>
-                                <p class="mb30 team-meta">- Producer</p>
+                                <p class="mb30 team-meta">- Badminton</p>
                                 <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam egete euismod justam ac temlibern rutrum nisli in mi rhoncac pharetra odioacin ntesque dictum vel risus quis egeaecenas necese purus quaroin tincidunt neque malesuda vulputate lecton pretiume.</p>
                             </div>
                         </div>
@@ -48,12 +50,12 @@
                         <img src="https://easetemplate.com/free-website-templates/motion/images/team_member_2.jpg" alt="">
                         <div class="team-content">
                             <h4 class="text-white mb0">Gerald Ferguson</h4>
-                            <p class="team-meta">- Creative Director</p>
+                            <p class="team-meta">- Foot</p>
                         </div>
                         <div class="overlay">
                             <div class="text">
                                 <h4 class="mb0 text-white">Gerald Ferguson</h4>
-                                <p class="mb30 team-meta">- Creative Director</p>
+                                <p class="mb30 team-meta">- Foot</p>
                                 <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam egete euismod justam ac temlibern rutrum nisli in mi rhoncac pharetra odioacin ntesque dictum vel risus quis egeaecenas necese purus quaroin tincidunt neque malesuda vulputate lecton pretiume.</p>
                             </div>
                         </div>
@@ -68,12 +70,12 @@
                         <img src="https://easetemplate.com/free-website-templates/motion/images/team_member_3.jpg" alt="" class="img-fluid">
                         <div class="team-content">
                             <h4 class="text-white mb0">William Murphy</h4>
-                            <p class="team-meta">- Project Manager</p>
+                            <p class="team-meta">- Boxe anglaise</p>
                         </div>
                         <div class="overlay">
                             <div class="text">
                                 <h4 class="mb0 text-white">William Murphy</h4>
-                                <p class="mb30 team-meta">- Project Manager</p>
+                                <p class="mb30 team-meta">- Boxe anglaise</p>
                                 <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam egete euismod justam ac temlibern rutrum nisli in mi rhoncac pharetra odioacin ntesque dictum vel risus quis egeaecenas necese purus quaroin tincidunt neque malesuda vulputate lecton pretiume.</p>
                             </div>
                         </div>
@@ -88,13 +90,13 @@
                         <img src="https://easetemplate.com/free-website-templates/motion/images/team_member_4.jpg" alt="" class="img-fluid">
                         <div class="team-content">
                             <h4 class="text-white mb0">Barbara Cook</h4>
-                            <p class="team-meta">- Producer</p>
+                            <p class="team-meta">- Jujitsu</p>
                         </div>
                         <div class="overlay">
                             <div class="text">
 
                                 <h4 class="text-white mb0">Barbara Cook</h4>
-                                <p class="mb30 team-meta">- Producer</p>
+                                <p class="mb30 team-meta">- Jujitsu</p>
                                 <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam egete euismod justam ac temlibern rutrum nisli in mi rhoncac pharetra odioacin ntesque dictum vel risus quis egeaecenas necese purus quaroin tincidunt neque malesuda vulputate lecton pretiume.</p>
                             </div>
                         </div>
@@ -109,12 +111,12 @@
                         <img src="https://easetemplate.com/free-website-templates/motion/images/team_member_5.jpg" alt="" class="img-fluid">
                         <div class="team-content">
                             <h4 class="text-white mb0">Derek Bybee</h4>
-                            <p class=" mb30 team-meta">- Creative Director</p>
+                            <p class=" mb30 team-meta">- Tennis</p>
                         </div>
                         <div class="overlay">
                             <div class="text">
                                 <h4 class="text-white mb0">Derek Bybee</h4>
-                                <p class=" mb30 team-meta">- Creative Director</p>
+                                <p class=" mb30 team-meta">- Tennis</p>
                                 <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam egete euismod justam ac temlibern rutrum nisli in mi rhoncac pharetra odioacin ntesque dictum vel risus quis egeaecenas necese purus quaroin tincidunt neque malesuda vulputate lecton pretiume.</p>
                             </div>
                         </div>
@@ -129,12 +131,12 @@
                         <img src="https://easetemplate.com/free-website-templates/motion/images/team_member_6.jpg" alt="" class="img-fluid">
                         <div class="team-content">
                             <h4 class="text-white mb0">Lucille Webster</h4>
-                            <p class=" mb30 team-meta">- Cinematographer + Steadicam Operator</p>
+                            <p class=" mb30 team-meta">- Equitation</p>
                         </div>
                         <div class="overlay">
                             <div class="text">
                                 <h4 class="text-white mb0">Lucille Webster</h4>
-                                <p class="team-meta">- Cinematographer + Steadicam Operator</p>
+                                <p class="team-meta">- Equitation</p>
                                 <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam egete euismod justam ac temlibern rutrum nisli in mi rhoncac pharetra odioacin ntesque dictum vel risus quis egeaecenas necese purus quaroin tincidunt neque malesuda vulputate lecton pretiume.</p>
                             </div>
                         </div>
@@ -144,7 +146,6 @@
             <!-- /.team-img -->
         </div>
     </div>
-</div>
 </div>
 
 {% endblock %}

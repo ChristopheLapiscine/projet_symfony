@@ -1,0 +1,45 @@
+{% extends 'baseSite.html.twig' %}
+
+{% block content %}
+    <h1>Coaches list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Price</th>
+                <th>Avatar</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coach in coaches %}
+            <tr>
+                <td><a href="{{ path('admin_coach_show', { 'id': coach.id }) }}">{{ coach.id }}</a></td>
+                <td>{{ coach.price }}</td>
+                <td>{{ coach.avatar }}</td>
+                <td>{% if coach.createdAt %}{{ coach.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if coach.updatedAt %}{{ coach.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_coach_show', { 'id': coach.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_coach_edit', { 'id': coach.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_coach_new') }}">Create a new coach</a>
+        </li>
+    </ul>
+{% endblock %}

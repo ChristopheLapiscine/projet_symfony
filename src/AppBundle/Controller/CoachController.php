@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Coach;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Coach controller.
@@ -44,6 +46,27 @@ class CoachController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //je récupère l'image uploader par l'utilisateur
+            $avatar = $coach->getAvatar();
+
+            //Je génère un nom unique, suivi de l'extension de mon image
+            $AvatarName = md5(uniqid()).'.'.$avatar->guessExtension();
+
+            // Je déplace mon image dans un dossier en lui donnant le nom unique que j'ai crée
+            try {
+                $avatar->move(
+                    $this->getParameter('upload_images_coach'),
+                    $AvatarName
+                );
+                // si y'a une erreur dans l'upload, j'affiche l'erreur
+            } catch (FileException $e) {
+                throw new \Exception($e->getMessage());
+            }
+
+            //Je remets dans mon entité (qui sera sauvegardé en BDD) le nom de l'image qu'on a créee.
+            $coach->setAvatar($AvatarName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($coach);
             $em->flush();

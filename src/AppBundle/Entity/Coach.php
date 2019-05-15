@@ -34,7 +34,7 @@ class Coach
     /**
      * @ORM\OneToMany(targetEntity="Avis", mappedBy="coach")
      */
-    private $avis;
+    public $avis;
 
     /**
      * @ORM\OneToMany(targetEntity="Messages", mappedBy="coach")
@@ -47,92 +47,18 @@ class Coach
     private $reservation;
 
     /**
-     * @return mixed
-     */
-    public function getReservation()
-    {
-        return $this->reservation;
-    }
-
-    /**
-     * @param mixed $reservation
-     */
-    public function setReservation($reservation)
-    {
-        $this->reservation = $reservation;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMessages()
-    {
-        return $this->messages;
-    }
-
-    /**
-     * @param mixed $messages
-     */
-    public function setMessages($messages)
-    {
-        $this->messages = $messages;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSport()
-    {
-        return $this->sport;
-    }
-
-    /**
-     * @param mixed $sport
-     */
-    public function setSport($sport)
-    {
-        $this->sport = $sport;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param mixed $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAvis()
-    {
-        return $this->avis;
-    }
-
-    /**
-     * @param mixed $avis
-     */
-    public function setAvis($avis)
-    {
-        $this->avis = $avis;
-    }
-
-    /**
      * @var int
      *
      * @ORM\Column(name="price", type="integer")
      */
-    private $price;
+    public $price;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    public $description;
 
     /**
      * @var string
@@ -148,7 +74,7 @@ class Coach
      */
     private $createdAt;
 
-    Public function __construct(){
+    public function __construct(){
 
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
@@ -252,6 +178,103 @@ class Coach
     {
         $this->avatar = $avatar;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * @param mixed $reservation
+     */
+    public function setReservation($reservation)
+    {
+        $this->reservation = $reservation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * @param mixed $messages
+     */
+    public function setMessages($messages)
+    {
+        $this->messages = $messages;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSport()
+    {
+        return $this->sport;
+    }
+
+    /**
+     * @param mixed $sport
+     */
+    public function setSport($sport)
+    {
+        $this->sport = $sport;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAvis()
+    {
+        return $this->avis;
+    }
+
+    /**
+     * @param mixed $avis
+     */
+    public function setAvis($avis)
+    {
+        $this->avis = $avis;
+    }
+
 
 }
 

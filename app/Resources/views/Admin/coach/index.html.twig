@@ -1,45 +1,52 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset("assets/css/listeCoach.css") }}">{% endblock %}
+
 {% block content %}
-    <h1>Coaches list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Price</th>
-                <th>Avatar</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for coach in coaches %}
-            <tr>
-                <td><a href="{{ path('admin_coach_show', { 'id': coach.id }) }}">{{ coach.id }}</a></td>
-                <td>{{ coach.price }}</td>
-                <td>{{ coach.avatar }}</td>
-                <td>{% if coach.createdAt %}{{ coach.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if coach.updatedAt %}{{ coach.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_coach_show', { 'id': coach.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_coach_edit', { 'id': coach.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4">
+        <h1>Liste Coach</h1>
+    </div>
+</div>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+    {% for coach in coaches %}
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                        <!-- team-img -->
+                        <div class="team-block">
+                            <div class="team-img">
+                                <img src="{{ asset('uploads/coach/'~coach.avatar) }}" alt="">
+                                <div class="team-content">
+                                    <h4 class="text-white mb0">{{ coach.price }}</h4>
+                                    <p class="team-meta">- {{ coach.price }} €</p>
+                                </div>
+                                <div class="overlay">
+                                    <div class="text">
+                                        <h4 class="mb0 text-white">{{ coach.price }}</h4>
+                                        <p class="mb30 team-meta">- {{ coach.price}} €</p>
+                                        <p>{{ coach.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div>
+                            <a href="{{ path('admin_coach_show', { 'id': coach.id }) }}" class="btn btn-primary">Voir</a>
+                            <a href="{{ path('admin_coach_edit', { 'id': coach.id }) }}" class="btn btn-primary">Editer</a>
+                        </div>
+
         {% endfor %}
-        </tbody>
-    </table>
+            </div>
+        </div>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_coach_new') }}">Create a new coach</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4">
+            <h3><a href="{{ path('admin_coach_new') }}">Creer un coach</a></h3>
+        </div>
+    </div>
+
 {% endblock %}

@@ -16,6 +16,7 @@ class CoachType extends AbstractType
     {
         $builder->add('price')
                 ->add('avatar', FileType::class, array('data_class' => null))
+                ->add('description')
                 ->add('user')
                 ->add('sport');
     }/**

@@ -1,21 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Coach edit</h1>
+    <h1>Editer un coach</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ form_label(edit_form.price, 'Prix') }}
+                {{ form_errors(edit_form.price) }}
+                {{ form_widget(edit_form.price, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ form_label(edit_form.description, 'Description')}}
+                {{ form_errors(edit_form.description) }}
+                {{ form_widget(edit_form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col">
+                {{ form_label(edit_form.sport, 'Sport')}}
+                {{ form_errors(edit_form.sport) }}
+                {{ form_widget(edit_form.sport, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.user, 'Utilisateur') }}
+            {{ form_errors(edit_form.user) }}
+            {{ form_widget(edit_form.user, {'attr': {'class': 'form-control','rows':'3'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(edit_form.avatar, 'Avatar') }}
+            {{ form_errors(edit_form.avatar) }}
+            {{ form_widget(edit_form.avatar, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_coach_index') }}">Back to the list</a>
-        </li>
-        <li>
+    <div class="container">
+        <div class="row">
+            <input type="submit" value="Edit" class="btn btn-primary ml-3"/>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="btn btn-primary ml-2 mr-2">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <button><a href="{{ path('admin_coach_index') }}">Back to the list</a></button>
+        </div>
+    </div>
 {% endblock %}

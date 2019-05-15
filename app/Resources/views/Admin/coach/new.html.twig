@@ -1,16 +1,52 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <h1>Coach creation</h1>
+    <h1>Creation d'un coach</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ form_label(form.price, 'Prix') }}
+                {{ form_errors(form.price) }}
+                {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ form_label(form.description, 'Description')}}
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col">
+                {{ form_label(form.sport, 'Sport')}}
+                {{ form_errors(form.sport) }}
+                {{ form_widget(form.sport, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.user, 'Utilisateur') }}
+            {{ form_errors(form.user) }}
+            {{ form_widget(form.user, {'attr': {'class': 'form-control','rows':'3'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.avatar, 'Avatar') }}
+            {{ form_errors(form.avatar) }}
+            {{ form_widget(form.avatar, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+    </div>
+
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_coach_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="container">
+        <div class="row">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" class="btn btn-primary ml-3 mr-2"/>
+            {{ form_end(form) }}
+            <button><a href="{{ path('admin_coach_index') }}">Back to the list</a></button>
+        </div>
+    </div>
+
 {% endblock %}

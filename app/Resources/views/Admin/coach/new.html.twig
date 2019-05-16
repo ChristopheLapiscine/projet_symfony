@@ -36,17 +36,15 @@
         </div>
 
     </div>
-
-    {{ form_end(form) }}
-
     <div class="container">
         <div class="row">
-            {{ form_start(form) }}
             {{ form_widget(form) }}
             <input type="submit" value="Create" class="btn btn-primary ml-3 mr-2"/>
-            {{ form_end(form) }}
             <button><a href="{{ path('admin_coach_index') }}">Back to the list</a></button>
         </div>
     </div>
+    {{ form_end(form) }}
+
+
 
 {% endblock %}

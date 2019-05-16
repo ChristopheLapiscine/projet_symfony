@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Coach
@@ -50,6 +51,9 @@ class Coach
      * @var int
      *
      * @ORM\Column(name="price", type="integer")
+     * @Assert\Range
+     *      min = 0,
+     *      minMessage = "Vous ne pouvez pas mettre une valeur négative à {{ limit }}",
      */
     public $price;
 
@@ -57,6 +61,7 @@ class Coach
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\Lenght(min=40)
      */
     public $description;
 

@@ -6,7 +6,6 @@ use AppBundle\Entity\Coach;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -46,32 +45,12 @@ class CoachController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            //je récupère l'image uploader par l'utilisateur
-            $avatar = $coach->getAvatar();
-
-            //Je génère un nom unique, suivi de l'extension de mon image
-            $AvatarName = md5(uniqid()).'.'.$avatar->guessExtension();
-
-            // Je déplace mon image dans un dossier en lui donnant le nom unique que j'ai crée
-            try {
-                $avatar->move(
-                    $this->getParameter('upload_images_coach'),
-                    $AvatarName
-                );
-                // si y'a une erreur dans l'upload, j'affiche l'erreur
-            } catch (FileException $e) {
-                throw new \Exception($e->getMessage());
-            }
-
-            //Je remets dans mon entité (qui sera sauvegardé en BDD) le nom de l'image qu'on a créee.
-            $coach->setAvatar($AvatarName);
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($coach);
             $em->flush();
+            $this->addFlash('success', 'Coach crée avec succès');
 
-            return $this->redirectToRoute('admin_coach_show', array('id' => $coach->getId()));
+            return $this->redirectToRoute('admin_coach_index', array('id' => $coach->getId()));
         }
 
         return $this->render('admin/coach/new.html.twig', array(
@@ -88,11 +67,8 @@ class CoachController extends Controller
      */
     public function showAction(Coach $coach)
     {
-        $deleteForm = $this->createDeleteForm($coach);
-
         return $this->render('admin/coach/show.html.twig', array(
             'coach' => $coach,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -104,56 +80,37 @@ class CoachController extends Controller
      */
     public function editAction(Request $request, Coach $coach)
     {
-        $deleteForm = $this->createDeleteForm($coach);
         $editForm = $this->createForm('AppBundle\Form\CoachType', $coach);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Coach modifié avec succès');
 
-            return $this->redirectToRoute('admin_coach_edit', array('id' => $coach->getId()));
+            return $this->redirectToRoute('admin_coach_index', array('id' => $coach->getId()));
         }
 
         return $this->render('admin/coach/edit.html.twig', array(
             'coach' => $coach,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
      * Deletes a coach entity.
      *
-     * @Route("/{id}", name="admin_coach_delete")
+     * @Route("/delete/{id}", name="admin_coach_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Coach $coach)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($coach);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($coach);
-            $em->flush();
-        }
+        $coach = $this->getDoctrine()->getRepository(Coach::class)->find($id);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($coach);
+        $entityManager->flush();
+        $this->addFlash('success', 'Coach supprimé avec succès');
 
         return $this->redirectToRoute('admin_coach_index');
     }
 
-    /**
-     * Creates a form to delete a coach entity.
-     *
-     * @param Coach $coach The coach entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Coach $coach)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_coach_delete', array('id' => $coach->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
 }

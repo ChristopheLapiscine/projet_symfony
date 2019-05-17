@@ -51,9 +51,10 @@ class Coach
      * @var int
      *
      * @ORM\Column(name="price", type="integer")
-     * @Assert\Range
+     * @Assert\Range(
      *      min = 0,
-     *      minMessage = "Vous ne pouvez pas mettre une valeur négative à {{ limit }}",
+     *      minMessage = "Vous ne pouvez pas mettre une valeur négative à {{ limit }}"
+     * )
      */
     public $price;
 
@@ -61,7 +62,10 @@ class Coach
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Assert\Lenght(min=40)
+     * @Assert\Length(
+     *     min = 40,
+     *     minMessage = "La description ne peut être en dessous de {{ limit }} caractère de longueur"
+     * )
      */
     public $description;
 

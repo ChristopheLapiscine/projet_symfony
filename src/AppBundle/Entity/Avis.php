@@ -67,6 +67,10 @@ class Avis
      * @var int
      *
      * @ORM\Column(name="note", type="integer")
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 5
+     * )
      */
     private $note;
 

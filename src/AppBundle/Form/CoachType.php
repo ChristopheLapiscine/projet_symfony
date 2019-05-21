@@ -19,7 +19,9 @@ class CoachType extends AbstractType
                 ->add('description')
                 ->add('user')
                 ->add('sport');
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Coach;
+use AppBundle\Entity\CoachSearch;
+use AppBundle\Form\CoachSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,14 +23,18 @@ class CoachController extends Controller
      * @Route("/", name="admin_coach_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $search = new CoachSearch();
+        $formulaire = $this->createForm(CoachSearchType::class, $search);
+        $formulaire->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
 
-        $coaches = $em->getRepository('AppBundle:Coach')->findAll();
+        $coaches = $em->getRepository('AppBundle:Coach')->findAllCoach($search);
 
         return $this->render('admin/coach/index.html.twig', array(
             'coaches' => $coaches,
+            'formulaire' => $formulaire->createView()
         ));
     }
 

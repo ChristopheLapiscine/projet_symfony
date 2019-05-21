@@ -2,6 +2,11 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\CoachSearch;
+use AppBundle\Form\CoachSearchType;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * CoachRepository
  *
@@ -11,4 +16,21 @@ namespace AppBundle\Repository;
 class CoachRepository extends \Doctrine\ORM\EntityRepository
 {
 
+    public function findAllCoach(CoachSearch $search){
+        $query = $this->findAllQuery();
+
+        if($search ->getPrice()){
+            $query = $query
+                ->where('c.price <= :price')
+                ->setParameter('price', $search->getPrice());
+        }
+            return $query->getQuery()->getResult();
+    }
+
+
+
+    private function findAllQuery(){
+
+        return $this->createQueryBuilder('c');
+    }
 }

@@ -15,7 +15,9 @@ class CoachType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('price')
-                ->add('avatar', FileType::class, array('data_class' => null))
+                ->add('avatarFile', FileType::class, [
+                    'required' => false
+                ])
                 ->add('description')
                 ->add('user')
                 ->add('sport');

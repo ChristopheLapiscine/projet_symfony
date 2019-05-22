@@ -3,13 +3,17 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Coach
  *
  * @ORM\Table(name="coach")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CoachRepository")
+ * @Vich\Uploadable()
  */
 class Coach
 {
@@ -69,12 +73,19 @@ class Coach
      */
     public $description;
 
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
+     * @var File|null
+     * @Vich\UploadableField(mapping="coach_avatar", fileNameProperty="avatarName")
      */
-    public $avatar;
+    private $avatarFile;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $avatarName;
+
 
     /**
      * @var \DateTime
@@ -175,22 +186,6 @@ class Coach
     /**
      * @return string
      */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
-
-    /**
-     * @param string $avatar
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
-    }
-
-    /**
-     * @return string
-     */
     public function getDescription()
     {
         return $this->description;
@@ -284,6 +279,45 @@ class Coach
         $this->avis = $avis;
     }
 
+    /**
+     * @return File|null
+     */
+    public function getAvatarFile()
+    {
+        return $this->avatarFile;
+    }
+
+    /**
+     * @param File|null $avatarFile
+     * @return Coach
+     * @throws \Exception
+     */
+    public function setAvatarFile($avatarFile)
+    {
+        $this->avatarFile = $avatarFile;
+        if ($this->avatarFile instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAvatarName()
+    {
+        return $this->avatarName;
+    }
+
+    /**
+     * @param string|null $avatarName
+     * @return Coach
+     */
+    public function setAvatarName($avatarName)
+    {
+        $this->avatarName = $avatarName;
+        return $this;
+    }
 
 }
 

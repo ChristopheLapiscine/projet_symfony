@@ -21,8 +21,14 @@ class CoachRepository extends \Doctrine\ORM\EntityRepository
 
         if($search ->getPrice()){
             $query = $query
-                ->where('c.price <= :price')
+                ->andWhere('c.price <= :price')
                 ->setParameter('price', $search->getPrice());
+        }
+
+        if($search ->getNote()){
+            $query = $query
+                ->andWhere('c.note >= :note')
+                ->setParameter('note', $search->getNote());
         }
             return $query->getQuery()->getResult();
     }

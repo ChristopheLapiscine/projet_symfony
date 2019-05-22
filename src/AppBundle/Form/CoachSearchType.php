@@ -19,15 +19,7 @@ class CoachSearchType extends AbstractType
             'attr' => [
                 'placeholder' => 'Prix de l\'heure'
             ]
-        ])
-        ->add('note', IntegerType::class, [
-        'required' => false,
-        'label' => false,
-        'attr' => [
-            'placeholder' => 'Trier par note'
-        ]
-    ]);
-
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

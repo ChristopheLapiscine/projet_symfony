@@ -7,7 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-    upload_images_coach: '%kernel.project_dir%/web/uploads/coach/'
+    # upload_images_coach: '%kernel.project_dir%/web/uploads/coach/'
 
 framework:
     #esi: ~
@@ -84,3 +84,12 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\RegistrationType
+
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        coach_avatar:
+            uri_prefix: /avatar/coach
+            upload_destination: '%kernel.project_dir%/web/assets/avatar/coach'
+            namer: vich_uploader.namer_uniqid

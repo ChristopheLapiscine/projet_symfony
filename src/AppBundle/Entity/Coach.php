@@ -76,13 +76,16 @@ class Coach
 
     /**
      * @var File|null
+     * @Assert\Image
+     *     mimeTypes
+     *
      * @Vich\UploadableField(mapping="coach_avatar", fileNameProperty="avatarName")
      */
     private $avatarFile;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatarName;
 

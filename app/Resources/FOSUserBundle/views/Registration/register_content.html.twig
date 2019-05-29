@@ -29,26 +29,6 @@
                         {% endfor %}
                 </div>
 
-                <div class="input-group form-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    </div>
-                        {{ form_widget(form.nom, { 'attr': {'class': 'form-control', 'placeholder':'Nom'} }) }}
-                        {% for errorItem in form.nom.vars.errors %}
-                            <span class="help-inline">{{ errorItem.message }}</span>
-                        {% endfor %}
-                </div>
-
-                    <div class="input-group form-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                            {{ form_widget(form.prenom, { 'attr': {'class': 'form-control', 'placeholder':'Prenom'} }) }}
-                            {% for errorItem in form.prenom.vars.errors %}
-                                <span class="help-inline">{{ errorItem.message }}</span>
-                            {% endfor %}
-                    </div>
-
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>

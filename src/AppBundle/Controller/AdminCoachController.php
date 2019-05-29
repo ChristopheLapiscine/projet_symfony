@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("admin/coach")
  */
-class CoachController extends Controller
+class AdminCoachController extends Controller
 {
     /**
      * Lists all coach entities.

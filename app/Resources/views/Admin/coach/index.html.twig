@@ -8,59 +8,63 @@
 {% block content %}
 
 
-<section class="search-sec">
-    <div class="container">
-        {{ form_start(formulaire) }}
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                        {{ form_widget(formulaire.price, { 'attr': {'class': 'form-control search-slt'} }) }}
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                        <input type="text" class="form-control search-slt" placeholder="Choisis ton sport">
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                        <select class="form-control search-slt" id="exampleFormControlSelect1">
-                            <option>Categorie</option>
-                            <option>Example one</option>
-                            <option>Example one</option>
-                            <option>Example one</option>
-                            <option>Example one</option>
-                            <option>Example one</option>
-                            <option>Example one</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                        <button class="btn btn-primary">Rechercher</button>
+    <section class="search-sec">
+        <div class="container">
+            {{ form_start(formulaire) }}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                            {{ form_widget(formulaire.price, { 'attr': {'class': 'form-control search-slt'} }) }}
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                            <input type="text" class="form-control search-slt" placeholder="Choisis ton sport">
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                            <select class="form-control search-slt" id="exampleFormControlSelect1">
+                                <option>Categorie</option>
+                                <option>Example one</option>
+                                <option>Example one</option>
+                                <option>Example one</option>
+                                <option>Example one</option>
+                                <option>Example one</option>
+                                <option>Example one</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                            <button class="btn btn-primary">Rechercher</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            {{ form_end(formulaire) }}
         </div>
-        {{ form_end(formulaire) }}
-    </div>
-</section>
+    </section>
 
-<div class="row">
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4">
-        <h1>Liste Coach</h1>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4">
+            <h1>Liste Coach</h1>
 
-        {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
     <div class="content">
         <div class="container">
             <div class="row">
-    {% for coach in coaches %}
+                {% for coach in coaches %}
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                         <!-- team-img -->
                         <div class="team-block">
                             <div class="team-img">
-                                <img src="{{ asset('assets/avatar/coach/'~coach.avatarName) }}" alt="">
+                                {% if coach.avatarName %}
+                                        <img src="{{ asset('assets/avatar/coach/'~coach.avatarName) }}" alt="" class="img-fluid">
+                                {% else %}
+                                    <img src="{{ asset('assets/img/godefroy.jpg') }}" alt="" style="" class="img-fluid">
+                                {% endif %}
                                 <div class="team-content">
                                     <h4 class="text-white mb0">{{ coach.price }}</h4>
                                     <p class="team-meta">- {{ coach.price }} €</p>
@@ -68,25 +72,25 @@
                                 <div class="overlay">
                                     <div class="text">
                                         <h4 class="mb0 text-white">{{ coach.price }}</h4>
-                                        <p class="mb30 team-meta">- {{ coach.price}} €</p>
+                                        <p class="mb30 team-meta">- {{ coach.price }} €</p>
                                         <p>{{ coach.description }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <a href="{{ path('admin_coach_show', { 'id': coach.id }) }}"
+                           class="btn btn-primary mb-2">Voir</a>
+                        <a href="{{ path('admin_coach_edit', { 'id': coach.id }) }}"
+                           class="btn btn-primary mb-2">Editer</a>
+                        <a href="{{ path("admin_coach_delete", {'id': coach.id}) }}"><input type="submit" value="Delete" class="btn btn-danger mb-2"></a>
                     </div>
-                        <div>
-                            <a href="{{ path('admin_coach_show', { 'id': coach.id }) }}" class="btn btn-primary">Voir</a>
-                            <a href="{{ path('admin_coach_edit', { 'id': coach.id }) }}" class="btn btn-primary">Editer</a>
-                        </div>
-
-        {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4 border border-dark">
             <h3><a href="{{ path('admin_coach_new') }}">Creer un coach</a></h3>
         </div>
     </div>

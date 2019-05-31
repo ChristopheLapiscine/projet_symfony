@@ -61,18 +61,19 @@
                         <div class="team-block">
                             <div class="team-img">
                                 {% if coach.avatarName %}
-                                        <img src="{{ asset('assets/avatar/coach/'~coach.avatarName) }}" alt="" class="img-fluid">
+                                    <img src="{{ asset('assets/avatar/coach/'~coach.avatarName) }}" alt=""
+                                         class="img-fluid">
                                 {% else %}
                                     <img src="{{ asset('assets/img/godefroy.jpg') }}" alt="" style="" class="img-fluid">
                                 {% endif %}
                                 <div class="team-content">
-                                    <h4 class="text-white mb0">{{ coach.price }}</h4>
-                                    <p class="team-meta">- {{ coach.price }} €</p>
+                                    <h4 class="text-white mb0">{{ coach.sport.name }}</h4>
+                                    <p class="team-meta">- {{ coach.price }} €/h</p>
                                 </div>
                                 <div class="overlay">
                                     <div class="text">
-                                        <h4 class="mb0 text-white">{{ coach.price }}</h4>
-                                        <p class="mb30 team-meta">- {{ coach.price }} €</p>
+                                        <h4 class="mb0 text-white">{{ coach.sport.name}}</h4>
+                                        <p class="mb30 team-meta">- {{ coach.price }} €/h</p>
                                         <p>{{ coach.description }}</p>
                                     </div>
                                 </div>

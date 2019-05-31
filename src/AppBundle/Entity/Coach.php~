@@ -1,0 +1,116 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
+/**
+ * Coach
+ *
+ * @ORM\Table(name="coach")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CoachRepository")
+ * @Vich\Uploadable()
+ */
+class Coach
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="coach")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Sport", inversedBy="coach")
+     */
+    private $sport;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Avis", mappedBy="coach")
+     */
+    public $avis;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Messages", mappedBy="coach")
+     */
+    private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reservation", mappedBy="coach")
+     */
+    private $reservation;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="price", type="integer")
+     * @Assert\Range(
+     *      min = 0,
+     *      minMessage = "Vous ne pouvez pas mettre une valeur négative à {{ limit }}"
+     * )
+     */
+    public $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     * @Assert\Length(
+     *     min = 40,
+     *     minMessage = "La description ne peut être en dessous de {{ limit }} caractère de longueur"
+     * )
+     */
+    public $description;
+
+
+    /**
+     * @var File|null
+     * @Assert\Image
+     *     mimeTypes
+     *
+     * @Vich\UploadableField(mapping="coach_avatar", fileNameProperty="avatarName")
+     */
+    private $avatarFile;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatarName;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime")
+     */
+    private $createdAt;
+
+    public function __construct(){
+
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime")
+     */
+    private $updatedAt;
+
+
+
+}
+

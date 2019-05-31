@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Sport</h1>
+
+    <div class="row ml-4">
+        <div class="col-md-8">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ sport.name }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if sport.createdAt %}{{ sport.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if sport.updatedAt %}{{ sport.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+    <div class="row">
+        <a href="{{ path('admin_sport_edit', { 'id': sport.id }) }}" class="btn btn-primary ml-5">Editer</a>
+        <a href="{{ path("admin_sport_delete", {'id': sport.id}) }}"><input type="submit" value="Delete" class="btn btn-danger ml-2 mr-2"></a>
+        <button><a href="{{ path('admin_sport_index') }}">Back to the list</a></button>
+    </div>
+
+{% endblock %}

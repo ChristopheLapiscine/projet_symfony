@@ -23,7 +23,7 @@ class AdminCoachController extends Controller
      * @Route("/", name="admin_coach_index")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
+    public function coachAction(Request $request)
     {
         $search = new CoachSearch();
         $formulaire = $this->createForm(CoachSearchType::class, $search);
@@ -31,6 +31,7 @@ class AdminCoachController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $coaches = $em->getRepository('AppBundle:Coach')->findAllCoach($search);
+    //    dump($coaches);die;
 
         return $this->render('admin/coach/index.html.twig', array(
             'coaches' => $coaches,

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4">
+            <h1>Creer un sport</h1>
+
+        </div>
+    </div>
+
+    {{ form_start(form) }}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ form_label(form.name, 'Nom') }}
+                {{ form_errors(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ form_label(form.category, 'Categorie') }}
+                {{ form_errors(form.category) }}
+                {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row">
+            {{ form_widget(form) }}
+            <input type="submit" value="Creer" class="btn btn-primary ml-3"/>
+            <button><a href="{{ path('admin_sport_index') }}">Back to the list</a></button>
+        </div>
+    </div>
+
+{% endblock %}

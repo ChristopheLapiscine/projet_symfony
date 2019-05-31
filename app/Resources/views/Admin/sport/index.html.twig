@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4">
+            <h1>Liste des Sports</h1>
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                {% for sport in sports %}
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="text" style="font-size: 30px">
+                            <a href="{{ path('admin_sport_show', { 'id': sport.id }) }}">{{ sport.id }}</a>
+                            {{ sport.name }}
+                        </div>
+
+                        <a href="{{ path('admin_sport_show', { 'id': sport.id }) }}"
+                           class="btn btn-primary mb-2">Voir</a>
+
+                        <a href="{{ path('admin_sport_edit', { 'id': sport.id }) }}"
+                           class="btn btn-primary mb-2">Editer</a>
+                        <a href="{{ path("admin_sport_delete", {'id': sport.id}) }}"><input type="submit" value="Delete" class="btn btn-danger mb-2"></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4 border border-dark">
+            <h3><a href="{{ path('admin_sport_new') }}">Créer un nouveau sport</a></h3>
+        </div>
+    </div>
+{% endblock %}

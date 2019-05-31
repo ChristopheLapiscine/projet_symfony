@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Sport;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +22,10 @@ class CoachType extends AbstractType
                 ])
                 ->add('description')
                 ->add('user')
-                ->add('sport');
+                ->add('sport', EntityType::class, [
+                    'class' => Sport::class,
+                    'choice_label' => 'name'
+                ]);
     }
 
     /**

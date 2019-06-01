@@ -32,7 +32,7 @@ class Coach
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Sport", inversedBy="coach", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Sport", inversedBy="coach")
      */
     private $sport;
 

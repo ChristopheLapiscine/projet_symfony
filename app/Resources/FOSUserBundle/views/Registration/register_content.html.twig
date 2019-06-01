@@ -49,6 +49,16 @@
                         {% endfor %}
                     </div>
 
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    {{ form_widget(form.roles, { 'attr': {'class': 'form-control'} }) }}
+                    {% for errorItem in form.roles.vars.errors %}
+                        <span class="help-inline">{{ errorItem.message }}</span>
+                    {% endfor %}
+                </div>
+
                 <a class="btn btn-link" href="{{ path('fos_user_security_login') }}">Back to login</a>
                 <div>
                     <input type="submit" id="register-submit-btn" class="btn float-right login_btn" value="{{ 'registration.submit'|trans }}" />

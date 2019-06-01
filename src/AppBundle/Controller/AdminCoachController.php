@@ -31,8 +31,6 @@ class AdminCoachController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $coaches = $em->getRepository('AppBundle:Coach')->findAllCoach($search);
-    //    dump($coaches);die;
-
         return $this->render('admin/coach/index.html.twig', array(
             'coaches' => $coaches,
             'formulaire' => $formulaire->createView()

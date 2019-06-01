@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  *
  * @Route("admin/sport")
  */
-class SportController extends Controller
+class AdminSportController extends Controller
 {
     /**
      * Lists all sport entities.
@@ -47,6 +47,7 @@ class SportController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($sport);
             $em->flush();
+            $this->addFlash('success', 'Sport crée avec succès');
 
             return $this->redirectToRoute('admin_sport_index', array('id' => $sport->getId()));
         }
@@ -65,11 +66,8 @@ class SportController extends Controller
      */
     public function showAction(Sport $sport)
     {
-        $deleteForm = $this->createDeleteForm($sport);
-
         return $this->render('admin/sport/show.html.twig', array(
             'sport' => $sport,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -87,6 +85,7 @@ class SportController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Sport modifié avec succès');
 
             return $this->redirectToRoute('admin_sport_index', array('id' => $sport->getId()));
         }
@@ -101,36 +100,17 @@ class SportController extends Controller
     /**
      * Deletes a sport entity.
      *
-     * @Route("/{id}", name="admin_sport_delete")
+     * @Route("/delete/{id}", name="admin_sport_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Sport $sport)
+    public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($sport);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($sport);
-            $em->flush();
-        }
+        $sport = $this->getDoctrine()->getRepository(Sport::class)->find($id);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($sport);
+        $entityManager->flush();
+        $this->addFlash('success', 'Sport supprimé avec succès');
 
         return $this->redirectToRoute('admin_sport_index');
-    }
-
-    /**
-     * Creates a form to delete a sport entity.
-     *
-     * @param Sport $sport The sport entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Sport $sport)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_sport_delete', array('id' => $sport->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 }

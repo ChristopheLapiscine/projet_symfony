@@ -81,6 +81,9 @@ fos_user:
     from_email:
         address: christophe.lorenzato@lapiscine.pro
         sender_name: Christophe
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
 
 vich_uploader:
     db_driver: orm

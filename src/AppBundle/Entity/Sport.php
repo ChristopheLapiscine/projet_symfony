@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,9 +28,15 @@ class Sport
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="Coach", mappedBy="sport")
+     * @ORM\OneToMany(targetEntity="Coach", mappedBy="sport", orphanRemoval=true)
      */
     private $coach;
+
+    public function __construct(){
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+        $this->coach = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -77,11 +84,6 @@ class Sport
      */
     private $createdAt;
 
-    Public function __construct(){
-
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
-    }
 
     /**
      * @var \DateTime
@@ -89,8 +91,6 @@ class Sport
      * @ORM\Column(name="updatedAt", type="datetime")
      */
     private $updatedAt;
-
-
 
     /**
      * Get id

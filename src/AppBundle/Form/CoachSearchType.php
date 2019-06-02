@@ -4,6 +4,8 @@
 namespace AppBundle\Form;
 
 
+use AppBundle\Entity\Sport;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,7 +21,14 @@ class CoachSearchType extends AbstractType
             'attr' => [
                 'placeholder' => 'Prix de l\'heure'
             ]
-        ]);
+        ])
+            ->add('sport', EntityType::class, [
+                'required' => false,
+                'label' => false,
+                'class' => Sport::class,
+                'placeholder' => 'Choisis un sport',
+                'choice_label' => 'name'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

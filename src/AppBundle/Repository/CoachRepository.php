@@ -16,27 +16,21 @@ use Doctrine\ORM\QueryBuilder;
 class CoachRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function findAllCoach(CoachSearch $search){
-        $query = $this->findAllQuery();
+    public function findByFilters($searchPrice = null, $searchSport = null)
+    {
+        $qb = $this->createQueryBuilder('c');
 
-        if($search ->getPrice()){
-            $query = $query
-                ->andWhere('c.price <= :price')
-                ->setParameter('price', $search->getPrice());
+        if($searchPrice != null)
+        {
+            $qb->andWhere('c.price <= :price')
+                ->setParameter('price', $searchPrice);
+        }
+        if($searchSport  != null)
+        {
+            $qb->andWhere('c.sport = :sport')
+                ->setParameter('sport', $searchSport);
         }
 
-        if($search ->getSport()){
-            $query = $query
-                ->andWhere('c.sport >= :sport')
-                ->setParameter('sport', $search->getSport());
-        }
-            return $query->getQuery()->getResult();
-    }
-
-
-
-    private function findAllQuery(){
-
-        return $this->createQueryBuilder('c');
+        return $qb->getQuery()->getResult();
     }
 }

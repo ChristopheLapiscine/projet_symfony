@@ -49,7 +49,7 @@ class AdminSportController extends Controller
             $em->flush();
             $this->addFlash('success', 'Sport crée avec succès');
 
-            return $this->redirectToRoute('admin_sport_index', array('id' => $sport->getId()));
+            return $this->redirectToRoute('admin_sport_index');
         }
 
         return $this->render('admin/sport/new.html.twig', array(
@@ -79,7 +79,6 @@ class AdminSportController extends Controller
      */
     public function editAction(Request $request, Sport $sport)
     {
-        $deleteForm = $this->createDeleteForm($sport);
         $editForm = $this->createForm('AppBundle\Form\SportType', $sport);
         $editForm->handleRequest($request);
 
@@ -87,13 +86,12 @@ class AdminSportController extends Controller
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Sport modifié avec succès');
 
-            return $this->redirectToRoute('admin_sport_index', array('id' => $sport->getId()));
+            return $this->redirectToRoute('admin_sport_index');
         }
 
         return $this->render('admin/sport/edit.html.twig', array(
             'sport' => $sport,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

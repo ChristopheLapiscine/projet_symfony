@@ -3,11 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Coach;
-use AppBundle\Entity\CoachSearch;
-use AppBundle\Form\CoachSearchType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Sport;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -21,20 +20,28 @@ class AdminCoachController extends Controller
      * Lists all coach entities.
      *
      * @Route("/", name="admin_coach_index")
-     * @Method("GET")
      */
     public function coachAction(Request $request)
     {
-        $search = new CoachSearch();
-        $formulaire = $this->createForm(CoachSearchType::class, $search);
-        $formulaire->handleRequest($request);
-        $em = $this->getDoctrine()->getManager();
+        $sports = $this->getDoctrine()->getRepository(Sport::class)->findAll();
 
-        $coaches = $em->getRepository('AppBundle:Coach')->findAllCoach($search);
+        if ($request->query->get('submit') == 1)
+        {
+            $searchPrice = $request->query->get('price');
+            $searchSport = $request->query->get('sport');
+
+            $coaches = $this->getDoctrine()->getRepository('AppBundle:Coach')
+                ->findByFilters($searchPrice, $searchSport);
+
+        } else {
+
+            $coaches = $this->getDoctrine()->getRepository('AppBundle:Coach')->findAll();
+        }
+
         return $this->render('admin/coach/index.html.twig', array(
             'coaches' => $coaches,
-            'formulaire' => $formulaire->createView()
-        ));
+            'sports' => $sports,
+    ));
     }
 
     /**
@@ -55,7 +62,7 @@ class AdminCoachController extends Controller
             $em->flush();
             $this->addFlash('success', 'Coach crée avec succès');
 
-            return $this->redirectToRoute('admin_coach_index', array('id' => $coach->getId()));
+            return $this->redirectToRoute('admin_coach_index');
         }
 
         return $this->render('admin/coach/new.html.twig', array(
@@ -83,16 +90,20 @@ class AdminCoachController extends Controller
      * @Route("/{id}/edit", name="admin_coach_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Coach $coach)
+    public function editAction(Request $request, $id)
     {
+        $coach = $this->getDoctrine()->getRepository(Coach::class)->find($id);
+
         $editForm = $this->createForm('AppBundle\Form\CoachType', $coach);
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Coach modifié avec succès');
 
-            return $this->redirectToRoute('admin_coach_index', array('id' => $coach->getId()));
+            return $this->redirectToRoute('admin_coach_index');
         }
 
         return $this->render('admin/coach/edit.html.twig', array(

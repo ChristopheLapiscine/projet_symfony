@@ -1,0 +1,27 @@
+@media (min-width: 992px) {
+    .collapse {
+        justify-content: space-between;
+    }
+}
+
+.navbar{
+    background-color: #022e34;
+}
+
+.btn-sm {
+    background-color: #00ada7;
+}
+
+.btn-sm a{
+    color: white;
+    text-decoration: none;
+}
+
+.btn-info{
+    background-color: #00ada7;;
+}
+
+.btn-info a{
+    color: white;
+    text-decoration: none;
+}

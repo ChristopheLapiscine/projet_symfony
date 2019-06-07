@@ -2,10 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\CoachSearch;
-use AppBundle\Form\CoachSearchType;
-use Doctrine\ORM\Query;
-use Doctrine\ORM\QueryBuilder;
 
 /**
  * CoachRepository

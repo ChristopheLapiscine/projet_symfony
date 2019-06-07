@@ -52,6 +52,7 @@ class AdminCoachController extends Controller
      */
     public function newAction(Request $request)
     {
+        $sports = $this->getDoctrine()->getRepository(Sport::class)->findAll();
         $coach = new Coach();
         $form = $this->createForm('AppBundle\Form\CoachType', $coach);
         $form->handleRequest($request);
@@ -67,6 +68,7 @@ class AdminCoachController extends Controller
 
         return $this->render('admin/coach/new.html.twig', array(
             'coach' => $coach,
+            'sports' => $sports,
             'form' => $form->createView(),
         ));
     }
@@ -128,5 +130,4 @@ class AdminCoachController extends Controller
 
         return $this->redirectToRoute('admin_coach_index');
     }
-
 }

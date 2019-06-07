@@ -25,6 +25,7 @@ class CoachType extends AbstractType
                 ->add('avatarFile', FileType::class, [
                     'required' => false
                 ])
+                ->add('user')
                 ->add('description')
                 ->add('sport', EntityType::class, [
                     'class' => Sport::class,

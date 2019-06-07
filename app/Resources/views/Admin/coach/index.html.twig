@@ -7,40 +7,8 @@
 
 {% block content %}
 
-
-    <section class="search-sec">
-        <div class="container">
-            <form action="{{ path('admin_coach_index') }}" method="GET">
-                <select name="sport" id="sport">
-                    <option value="">Choisis ton sport</option>
-                    {% for sport in sports %}
-                        <option value="{{ sport.id }}"
-                                {% if app.request.get('sport') == sport.id %}
-                        selected
-                                {% endif %}>
-                            {{ sport.name }}</option>
-                    {% endfor %}
-                </select>
-                <select name="price" id="price">
-                    <option value="">Trier par prix</option>
-                    {% for price in prices %}
-                        <option value="{{ price }}"
-                                {% if app.request.get('price') == price %}
-                        selected
-                                {% endif %}>
-                            {{ price }}</option>
-                    {% endfor %}
-                </select>
-                <button name="submit" value="1" class="btn btn-info">Filter</button>
-                <a href="{{ path('admin_coach_index') }}" class="btn btn-info">Reset</a>
-            </form>
-        </div>
-    </section>
-
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4">
-            <h1>Liste Coach</h1>
-
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
                     {{ message }}
@@ -48,7 +16,7 @@
             {% endfor %}
         </div>
     </div>
-    <div class="content">
+
         <div class="container">
             <div class="row">
                 {% for coach in coaches %}
@@ -88,7 +56,6 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
 
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4 border border-dark">

@@ -1,6 +1,7 @@
-{% extends 'crudAdminBase.html.twig' %}
+{% extends "base.html.twig" %}
 
 {% block content %}
+
     <h1>Coach</h1>
 
     <div class="jumbotron">
@@ -24,9 +25,7 @@
                 {% endif %}
             </div>
             <div class="col-md-4">
-
-              {#<h1>{{ coach.user.username }}</h1>#}
-
+                {# <h1>{{ coach.user.username }}</h1>#}
             </div>
         </div>
     </div>
@@ -45,23 +44,14 @@
                     <th>Sport</th>
                     <td>{{ coach.sport.name }}</td>
                 </tr>
-                <tr>
-                    <th>Createdat</th>
-                    <td>{% if coach.createdAt %}{{ coach.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                </tr>
-                <tr>
-                    <th>Updatedat</th>
-                    <td>{% if coach.updatedAt %}{{ coach.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                </tr>
+
                 </tbody>
             </table>
         </div>
     </div>
 
-    <div class="row">
-        <a href="{{ path('admin_coach_edit', { 'id': coach.id }) }}" class="btn btn-primary ml-5">Edit</a>
-        <a href="{{ path("admin_coach_delete", {'id': coach.id}) }}"><input type="submit" value="Delete" class="btn btn-danger ml-2 mr-2"></a>
-        <button><a href="{{ path('admin_coach_index') }}">Back to the list</a></button>
+    <div class="row ml-4">
+        <button><a href="{{ path('client_coach_index') }}">Back to the list</a></button>
     </div>
 
 {% endblock %}

@@ -83,6 +83,7 @@ class AdminCoachController extends Controller
     {
         return $this->render('admin/coach/show.html.twig', array(
             'coach' => $coach,
+
         ));
     }
 

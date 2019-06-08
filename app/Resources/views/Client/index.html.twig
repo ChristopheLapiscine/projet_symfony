@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}<link rel="stylesheet" href="{{ asset("assets/css/listeCoach.css") }}">{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb40 text-center mt-4">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {% for coach in coaches %}
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                    <!-- team-img -->
+                    <div class="team-block">
+                        <div class="team-img">
+                            {% if coach.avatarName %}
+                                <img src="{{ asset('assets/avatar/coach/'~coach.avatarName) }}" alt=""
+                                     class="img-fluid">
+                            {% else %}
+                                <img src="{{ asset('assets/img/godefroy.jpg') }}" alt="" style="" class="img-fluid">
+                            {% endif %}
+                            <div class="team-content">
+                                <h4 class="text-white mb0">{{ coach.sport.name }}</h4>
+                                <p class="team-meta">- {{ coach.price }} €/h</p>
+                            </div>
+                            <div class="overlay">
+                                <div class="text">
+                                    <h4 class="mb0 text-white">{{ coach.sport.name }}</h4>
+                                    <p class="mb30 team-meta">- {{ coach.price }} €/h</p>
+                                    <p>{{ coach.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{ path('client_coach_show', { 'id': coach.id }) }}"
+                       class="btn btn-primary mb-2">Voir</a>
+                </div>
+            {% else %}
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                    <p>Rien ne correspond a votre recherche.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

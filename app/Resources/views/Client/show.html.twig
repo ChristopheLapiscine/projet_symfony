@@ -5,22 +5,29 @@
 
 {% block content %}
 
+    <!-- hearder-->
+    <div class="container profilbar">
+        <div class="row align-items-center">
+            <div class="offset-1 col-md-3">
+                <div class="bg-light border-dark pp">
+                    {% if coach.avatarName %}
+                        <img class="img-fluid p-2" src="{{ asset('assets/avatar/coach/'~coach.avatarName) }}">
+                    {% else %}
+                        <img src="{{ asset('assets/img/godefroy.jpg') }}">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-2 text-light">
+                <h5>{{ coach.sport.name }}</h5>
+                <h6>{{ coach.price }}€</h6>
+            </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="jumbotron">
-            <div class="col">
-                {% if coach.avatarName %}
-                    <img src="{{ asset('assets/avatar/coach/'~coach.avatarName) }}" alt=""
-                         style="height: 360px; width: 560px">
-                {% else %}
-                    <img src="{{ asset('assets/img/login.jpg') }}" alt="" style="height: 360px; width: 560px">
-                {% endif %}
-            </div>
-            </div>
-            <div class="col text-center">
+            <!-- hearder-->
+
+            <!--Debut Calendrier-->
+            <div class="col-5 text-center">
                 <br>
-                <table class="table table-bordered table-style table-responsive">
+                <table class="table table-bordered table-style bg-light">
                     <tr>
                         <th colspan="2"><span class="glyphicon glyphicon-chevron-left"></span></th>
                         <th colspan="3"> Juin - 2019</th>
@@ -85,36 +92,120 @@
             </div>
         </div>
     </div>
-
-
-    {{ coach.description }}
-
-    {{ coach.sport.name }}
-    {{ coach.price }} €
-
-
-    <i class="fab fa-facebook-square"></i>
-    <i class="fab fa-instagram"></i>
-
-    <div class="card">
-        <div class="card-header">
-            Commentaire
+    <!--Debut Calendrier-->
+    <!-- logos-->
+    <div class="container">
+        <div class="row align-items-center p-2">
+            <div class="offset-4 col-2 d-flex">
+                <div class="img">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="img">
+                    <i class="fab fa-facebook-square"></i>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p>C'était incroyable, j'ai beaucoup appris durant ces deux heures de cours. Je recommande.</p>
-            </blockquote>
+    </div>
+    <!-- logos-->
+    <!--description-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 description border-dark">
+                <p>{{ coach.description }}</p>
+                <a class="btn btn-primary" href="#">Contacter</a>
+            </div>
+        </div>
+    </div>
+    <!--description-->
+    <!-- Commentaires-->
+    <div class="container">
+        <div class="row">
+            <!-- avis-->
+            <div class="col-6 m-0 p-2">
+                <div class="card">
+                    <div class="card-header">
+                        Commentaire
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>C'était incroyable, j'ai beaucoup appris durant ces deux heures de cours. Je
+                                recommande.</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <!-- /avis-->
+            <!-- avis-->
+            <div class="col-6 m-0 p-2">
+                <div class="card">
+                    <div class="card-header">
+                        Commentaire
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>C'était incroyable, j'ai beaucoup appris durant ces deux heures de cours. Je
+                                recommande.</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <!-- /avis-->
+            <!-- avis-->
+            <div class="col-6 m-0 p-2">
+                <div class="card">
+                    <div class="card-header">
+                        Commentaire
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>C'était incroyable, j'ai beaucoup appris durant ces deux heures de cours. Je
+                                recommande.</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <!-- /avis-->
+            <!-- avis-->
+            <div class="col-6 m-0 p-2">
+                <div class="card">
+                    <div class="card-header">
+                        Commentaire
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>C'était incroyable, j'ai beaucoup appris durant ces deux heures de cours. Je
+                                recommande.</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <!-- /avis-->
+            <!-- avis-->
+            <div class="col-6 m-0 p-2">
+                <div class="card">
+                    <div class="card-header">
+                        Commentaire
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>C'était incroyable, j'ai beaucoup appris durant ces deux heures de cours. Je
+                                recommande.</p>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <!-- /avis-->
         </div>
     </div>
 
 
-    {# <h1>{{ coach.user.username }}</h1>#}
-
-
-
-
+<div class="container">
     <div class="row ml-4">
         <button><a href="{{ path('client_coach_index') }}">Retourner à la liste</a></button>
     </div>
+</div>
 
+
+    {# <h1>{{ coach.user.username }}</h1>#}
 {% endblock %}

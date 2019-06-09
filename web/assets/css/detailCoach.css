@@ -1,0 +1,18 @@
+.profilbar{
+    height: 250px;
+    background-color: #00ada7;
+}
+
+.img{
+    font-size: 35px;
+    margin-left:10px;
+    margin-right: 10px;
+}
+
+.pp, .description{border: #0b2e13 solid 1px;}
+
+.description{
+    background-color: lightgray;
+    margin-top: 20px;
+    padding: 10px;
+}

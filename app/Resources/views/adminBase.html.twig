@@ -15,18 +15,15 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand ml-4" href="#"><img src="{{ asset('assets/img/logo1.png') }}" alt="" style="width:130px; height:100px"></a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand ml-4" href="{{ path('home') }}"><img src="{{ asset('assets/img/logo1.png') }}" alt="" style="width:130px; height:100px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="form-inline ml-5" action="{{ path('admin_coach_index') }}" method="GET">
-            <select class="form-control mx-2" name="sport" id="sport">
+        <form class="form-inline ml-5" action="{{ path('client_coach_index') }}" method="GET">
+            <select class="form-control mx-3" name="sport" id="sport">
                 <option value="">Choisis ton sport</option>
                 {% for sport in sports %}
                     <option value="{{ sport.id }}"
@@ -36,7 +33,7 @@
                         {{ sport.name }}</option>
                 {% endfor %}
             </select>
-            <select class="form-control mr-3" name="price" id="price">
+            <select class="form-control mx-3" name="price" id="price">
                 <option value="">Trier par prix</option>
                 {% for price in prices %}
                     <option value="{{ price }}"
@@ -46,25 +43,30 @@
                         {{ price }}</option>
                 {% endfor %}
             </select>
-            <button name="submit" value="1" class="btn btn-info mr-2">Filter</button>
-            <button class="btn btn-info"><a href="{{ path('admin_coach_index') }}">Reset</a></button>
+            <button name="submit" value="1" class="btn btn-info mx-3 my-1">Filter</button>
+            <button class="btn btn-info mx-1 my-1"><a href="{{ path('client_coach_index') }}">Reset</a></button>
         </form>
 
+
         <ul class="navbar-nav">
-            <li class="nav-item ">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <button class="btn btn-sm">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li class="nav-item ">
+                    <button class="btn btn-sm mx-1 my-1">
                         <a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a>
                     </button>
-                {% else %}
-                    <button class="btn btn-sm">
+                </li>
+            {% else %}
+                <li class="nav-item ">
+                    <button class="btn btn-sm mx-1 my-1">
                         <a href="{{ path('fos_user_security_login') }}">Se connecter</a>
                     </button>
-                    <button class="btn btn-sm">
+                </li>
+                <li class="nav-item ">
+                    <button class="btn btn-sm mx-1 my-1">
                         <a href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
                     </button>
-                {% endif %}
-            </li>
+                </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
@@ -72,19 +74,6 @@
 
 {% block content %}
 {% endblock %}
-
-<footer>
-    <div class="d-flex justify-content-center mt-3">
-        <i class="fab fa-facebook-square"></i>
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-twitter"></i>
-        <i class="fab fa-pinterest"></i>
-    </div>
-    <div class="d-flex justify-content-center mt-2">
-        <p>&copy; 2019 Christophe Lorenzato
-        <p>
-    </div>
-</footer>
 
 {% block javascripts %}{% endblock %}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

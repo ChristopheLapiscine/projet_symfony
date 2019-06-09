@@ -1,3 +1,15 @@
+body{
+    font-family: 'Lato', sans-serif;
+    background-color: #cddadb;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    color: #11181f;
+    margin: 0px 0px 15px 0px;
+    font-family: 'Lato', sans-serif;
+}
+
 @media (min-width: 992px) {
     .collapse {
         justify-content: space-between;
@@ -21,7 +33,20 @@
     background-color: #00ada7;;
 }
 
+.btn-danger{
+    background-color: #7b1600!important;
+}
+
+.btn-primary{
+    background-color: #00ada7!important;
+}
+
 .btn-info a{
     color: white;
     text-decoration: none;
+}
+
+footer i {
+    font-size: 23px;
+    margin: 15px;
 }

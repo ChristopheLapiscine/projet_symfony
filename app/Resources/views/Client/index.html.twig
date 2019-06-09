@@ -29,19 +29,19 @@
                             {% endif %}
                             <div class="team-content">
                                 <h4 class="text-white mb0">{{ coach.sport.name }}</h4>
-                                <p class="team-meta">- {{ coach.price }} €/h</p>
+                                <p class="team-meta">{{ coach.price }} €/h</p>
                             </div>
                             <div class="overlay">
                                 <div class="text">
                                     <h4 class="mb0 text-white">{{ coach.sport.name }}</h4>
-                                    <p class="mb30 team-meta">- {{ coach.price }} €/h</p>
+                                    <p class="mb30 team-meta">{{ coach.price }} €/h</p>
                                     <p>{{ coach.description }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <a href="{{ path('client_coach_show', { 'id': coach.id }) }}"
-                       class="btn btn-primary mb-2">Voir</a>
+                       class="btn btn-primary mb-2"><i class="fas fa-info-circle"></i>Voir</a>
                 </div>
             {% else %}
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">

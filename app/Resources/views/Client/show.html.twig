@@ -13,7 +13,7 @@
                     {% if coach.avatarName %}
                         <img class="img-fluid p-2" src="{{ asset('assets/avatar/coach/'~coach.avatarName) }}">
                     {% else %}
-                        <img src="{{ asset('assets/img/godefroy.jpg') }}">
+                        <img class="img-fluid p-2" src="{{ asset('assets/img/godefroy.jpg') }}">
                     {% endif %}
                 </div>
             </div>
@@ -97,10 +97,10 @@
     <div class="container">
         <div class="row align-items-center p-2">
             <div class="offset-4 col-2 d-flex">
-                <div class="img">
+                <div class="logo">
                     <i class="fab fa-instagram"></i>
                 </div>
-                <div class="img">
+                <div class="logo">
                     <i class="fab fa-facebook-square"></i>
                 </div>
             </div>

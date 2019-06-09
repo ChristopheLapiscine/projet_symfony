@@ -3,16 +3,25 @@
     background-color: #00ada7;
 }
 
-.img{
+.logo{
     font-size: 35px;
     margin-left:10px;
     margin-right: 10px;
 }
 
-.pp, .description{border: #0b2e13 solid 1px;}
+.pp, .description{
+    border: #0b2e13 solid 1px;
+}
 
 .description{
     background-color: lightgray;
-    margin-top: 20px;
+    margin-left: 10px;
+    margin-top: 30px;
     padding: 10px;
+}
+
+.img-fluid{
+    height: 265px!important;
+    width: 350px;
+    object-fit: cover;
 }

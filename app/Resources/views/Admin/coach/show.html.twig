@@ -7,9 +7,9 @@
             <div class="col-md-8">
                 {% if coach.avatarName %}
                     <img src="{{ asset('assets/avatar/coach/'~coach.avatarName) }}" alt=""
-                         style="height: 360px; width: 560px">
+                         style="height: 260px; width: 360px">
                 {% else %}
-                    <img src="{{ asset('assets/img/godefroy.jpg') }}" alt="" style="height: 360px; width: 560px; object-fit: cover">
+                    <img src="{{ asset('assets/img/godefroy.jpg') }}" alt="" style="height: 260px; width: 460px; object-fit: cover">
                 {% endif %}
             </div>
             <div class="col-md-4">
@@ -19,8 +19,9 @@
             </div>
         </div>
     </div>
-
-    <p class="ml-4">{{ coach.description }}</p>
+    <div class="container">
+        <p>{{ coach.description }}</p>
+    </div>
 
     <div class="row ml-4">
         <div class="col-md-8">

@@ -68,7 +68,9 @@ class Coach
      * @ORM\Column(name="description", type="text")
      * @Assert\Length(
      *     min = 40,
-     *     minMessage = "La description ne peut être en dessous de {{ limit }} caractère de longueur"
+     *     max = 350,
+     *     minMessage = "La description ne peut être en dessous de {{ limit }} caractère de longueur",
+     *     maxMessage = "La description ne peut dépasser {{ limit }} caractère de longueur"
      * )
      */
     public $description;

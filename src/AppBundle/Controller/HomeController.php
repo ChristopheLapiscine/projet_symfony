@@ -7,6 +7,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Sport;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class HomeController extends Controller
 {
@@ -23,4 +24,13 @@ class HomeController extends Controller
             'sports' => $sports
         ));
     }
+
+        /**
+         * @Route("/admin", name="dashboard")
+         * @Security("has_role('ROLE_ADMIN')")
+         */
+    public function adminAction()
+{
+    return $this->render('admin/dashboardAdmin.html.twig');
+}
 }

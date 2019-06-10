@@ -3,6 +3,6 @@
 <div class="fos_user_user_show">
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-
-
+    <button class="btn btn-primary"><a href="{{ path('fos_user_profile_edit') }}">Editer profil</a></button>
+    <button class="btn btn-primary"><a href="{{ path('home') }}">Aller au site</a></button>
 </div>
